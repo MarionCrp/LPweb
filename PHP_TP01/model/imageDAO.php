@@ -66,10 +66,10 @@
 		function getImage($imgId) {
 			$req = $this->db->query('SELECT * FROM image WHERE id='.$imgId);
 			if ($req){
-				$image = $req->fetch(PDO::FETCH_ASSOC);
-				return new Image("model/IMG/".$image['path'], $imgId);
+				$image = $req->fetchAll();
+				return(new Image($this->path.'/'.$image[0]['path'], $imgId));
 			} else {
-				print "Error in getImage. id=".$id."<br/>";
+				print "Error in getImage. id=".$imgId."<br/>";
 				$err = $this->db->errorInfo();
 				print $err[2]."<br/>";
 			}
