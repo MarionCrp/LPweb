@@ -42,26 +42,46 @@
 
 
 		function __construct() {
-			$this->readDir("");
+			$dsn = 'sqlite:C:\wamp64\www\PHP_TP01\imageDB';
+			$user = '';
+			$pass = '';
+			try {
+				$this->db = new PDO($dsn, $user, $pass);
+			} catch (PDOException $e) {
+				die ("Erreur :".$e->getMessage());
+			}
 		}
 
 		# Retourne le nombre d'images référencées dans le DAO
 		function size() {
-			return count($this->imgEntry);
+			// $result = $this->db->query('SELECT COUNT(*) FROM image');
+			// return((int)$result->fetchColumn(0));
+			// Correction prof
+			$s = $this->db->query('SELECT * FROM image');
+			$res = $s->fetchAll();
+			return count($res);
 		}
 
 		# Retourne un objet image correspondant à l'identifiant
 		function getImage($imgId) {
-			# Verifie que cet identifiant est correct
-			if(!($imgId >=1 and  $imgId <=$this->size())) {
-				$size=$this->size();
-				debug_print_backtrace();
-				die("<H1>Erreur dans ImageDAO.getImage: imgId=$imgId incorrect</H1>");
+			$req = $this->db->query('SELECT * FROM image WHERE id='.$imgId);
+			if ($req){
+				$image = $req->fetch(PDO::FETCH_ASSOC);
+				return new Image("model/IMG/".$image['path'], $imgId);
+			} else {
+				print "Error in getImage. id=".$id."<br/>";
+				$err = $this->db->errorInfo();
+				print $err[2]."<br/>";
 			}
-
-			return new Image(self::urlPath.$this->imgEntry[$imgId-1],$imgId);;
+			// # Verifie que cet identifiant est correct
+			// if(!($imgId >=1 and  $imgId <=$this->size())) {
+			// 	$size=$this->size();
+			// 	debug_print_backtrace();
+			// 	die("<H1>Erreur dans ImageDAO.getImage: imgId=$imgId incorrect</H1>");
+			// }
+			//
+			// return new Image(self::urlPath.$this->imgEntry[$imgId-1],$imgId);;
 		}
-
 
 		# Retourne une image au hazard
 		function getRandomImage() {
@@ -71,6 +91,7 @@
 
 		# Retourne l'objet de la premiere image
 		function getFirstImage() {
+			$req = "Select * from imageDB";
 			return $this->getImage(1);
 		}
 
