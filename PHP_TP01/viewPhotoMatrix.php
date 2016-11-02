@@ -4,7 +4,7 @@
 	<head>
 		<title>Site SIL3</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="style.css" media="screen" title="Normal" />
+		<link rel="stylesheet" type="text/css" href="assets/style.css" media="screen" title="Normal" />
 		</head>
 	<body>
 		<div id="entete">
@@ -63,7 +63,7 @@
 					}
 
 					# Mise en place du menu
-					$menu['Home']="index.php";
+					$menu['Home']="home.php";
 					$menu['A propos']="aPropos.php";
 					// Pre-calcule la première image
 					$newImg = $imgDAO->getFirstImage();

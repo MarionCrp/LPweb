@@ -43,7 +43,7 @@
 
 
 					# Mise en place du menu
-					$menu['Home']="index.php";
+					$menu['Home']="home.php";
 					$menu['A propos']="aPropos.php";
 					// Pre-calcule la première image
 					$newImg = $imgDAO->getFirstImage();

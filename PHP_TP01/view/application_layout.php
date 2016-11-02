@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="fr" >
+  <head>
+    <title>Site SIL3</title>
+    <meta http-equprefiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="assets/style.css" media="screen" title="Normal" />
+  </head>
+
+  <body>
+    <div id="entete">
+        <h1>Site SIL3</h1>
+    </div>
+    <div id="menu">
+      <?php
+        foreach($data->menu as $item => $page){
+          print "<li><a href=\"$page\">$item</a></li>\n";
+        }
+      ?>
+    </div>
+
+      <div id="corps">
+        <?php
+          include('view/'.$data->content);
+        ?>
+      </div>
+    <div id="pied_de_page">
+    </div>
+  </body>
+</html>
+
