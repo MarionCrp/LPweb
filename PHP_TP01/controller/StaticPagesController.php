@@ -24,7 +24,7 @@
       global $data;
       $data->menu["Home"] = "index.php?controller=StaticPagesController&action=home";
       $data->menu["A propos"] = "index.php?controller=StaticPagesController&action=aPropos";
-      $data->menu["Images"] = "index.php?controller=PhotosController&action=index";
+      $data->menu["Voir les photos"] = "index.php?controller=PhotosController&action=index";
 
     }
   }

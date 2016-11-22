@@ -5,11 +5,11 @@
  * Date: 31/10/2016
  * Time: 10:27
  */
-//require_once("model/data.php");
+require_once("model/data.php");
 require_once("model/image.php");
 require_once("model/imageDAO.php");
 
-class PhotosController{
+class photo{
 
     private $data;
     private $imgDAO;
